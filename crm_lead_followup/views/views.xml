@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+
+        <record id="crm_lead_follow_up_cust_inherit" model="ir.ui.view">
+            <field name="name">crm_lead.follow_up_cust</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='opportunity_info']" position="after">
+                    <group name="follow_up_info" string="Follow up Info">
+                        <field name="first_follow_up" widget="selection"/>
+                        <field name="first_follow_up_date"/>
+                        <field name="second_follow_up" widget="selection"/>
+                        <field name="second_follow_up_date"/>
+                        <field name="third_follow_up" widget="selection"/>
+                        <field name="third_follow_up_date"/>
+                        <field name="follow_upstate"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="crm_lead_follow_up_tree" model="ir.ui.view">
+            <field name="name">crm_lead.follow_up.tree</field>
+            <field name="model">crm_lead.follow_up</field>
+            <field name="arch" type="xml">
+                <tree string="" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="crm_lead_follow_up_action" model="ir.actions.act_window">
+            <field name="name">CRM Lead Follow up</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">crm_lead.follow_up</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="crm_lead_follow_up_action_menu"
+                  name="CRM Lead Follow up"
+                  parent="crm.crm_menu_config"
+                  sequence="999"
+                  action="crm_lead_follow_up_action"
+                  groups="base.group_system"/>
+
+    </data>
+</odoo>
